@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap'); /* Used for quote text */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #313131;
+}
+
+.App {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+}
+
+.quote-container {
+  display: inline-table;
+  text-align: center;
+  width: 800px;
+  padding: 25px;
+  font-family: 'Nunito', sans-serif;
+  color: #F3F3F3;
+  border: 1px solid #F3F3F3;
+  border-radius: 5px;
+}
+
+.quote-text {
+  font-size: 25px;
+}
+
+.quote-author {
+  width: fit-content;
+  margin: 25px auto 5px auto;
+  font-size: 20px;
+  color: #747474;
+  border-bottom: 1px solid #747474;
+  border-width: 5%;
+}
