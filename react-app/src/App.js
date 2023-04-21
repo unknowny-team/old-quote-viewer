@@ -6,15 +6,24 @@ function App() {
   const [quote, setQuote] = useState({text: '', author: ''});
 
   useEffect(() => {
-    fetch('26.22.125.216:8080/api')
-      .then(res => res.json())
-      .then(obj => console.log(obj));
-      //.then(obj => setQuote({text: obj.text, author: obj.author}));
+    fetch('http://26.22.125.216:5000/api', {
+      method: 'GET',
+      mode: 'cors',
+      headers: {'Content-Type': 'application/json'},
+    })
+      .then(res => {
+        if (res.ok)
+          return res.json().then(obj => setQuote({text: obj.text, author: obj.author}));
+        else
+          return res.json().then(obj => console.log(`[Server ERROR] ${obj.error}`));
+      })
   }, [])
 
   return (
     <div className="App">
-      <Quote text={quote.text} author={quote.author}/>
+      {quote.text !== '' && quote.author !== ''
+        ? <Quote text={quote.text} author={quote.author}/> 
+        : <h3 className="quote-container">Цитата не загружена...</h3>}
     </div>
   );
 }
