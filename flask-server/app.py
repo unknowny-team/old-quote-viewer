@@ -1,4 +1,4 @@
-# импорт pure Python библиотек
+# импорт pure Python
 import random
 
 # импорт Flask
@@ -7,8 +7,8 @@ from flask import Flask, jsonify
 from flask_cors import CORS
 
 # инициализируем приложение
-APP = Flask(__name__)
-CORS(APP)
+app = Flask(__name__)
+CORS(app)
 
 # создаём генератор рандома, читаем цитаты из файла
 random.seed()
@@ -17,7 +17,7 @@ with open('quotes.csv', 'r', encoding='utf-8') as F:
 
 
 # роутинг маршрута /api
-@APP.route('/api', methods=['GET'])
+@app.route('/api', methods=['GET'])
 def send_quote():
     try:
         data = random.choice(quotes).split(';')  # выбираем случайную цитату (строчку), сплитим по ;
@@ -26,5 +26,5 @@ def send_quote():
             'author': data[1]
         })
     except Exception as e:  # обрабатываем любые ошибки, возвращаем как JSON
-        APP.logger.error('route /api - ' + '"{}"'.format(e))
+        app.logger.error('route /api - ' + '"{}"'.format(e))
         return jsonify(error=str(e)), 500
